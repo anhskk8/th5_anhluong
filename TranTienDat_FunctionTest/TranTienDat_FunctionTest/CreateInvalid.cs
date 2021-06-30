@@ -26,7 +26,54 @@ namespace TranTienDat_FunctionTest
             driver = new ChromeDriver();
             baseURL = "http://automationpractice.com";
         }
+        [Test]
+        public void TCCreate01()
+        {
+            driver.Navigate().GoToUrl(baseURL + "/index.php");
+            driver.FindElement(By.LinkText("Sign in")).Click();
+            driver.FindElement(By.Id("SubmitCreate")).Click();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            Assert.AreEqual("Invalid email address.", driver.FindElement(By.CssSelector("ol > li")).Text);
+        }
 
+        [Test]
+        public void TCCreate02()
+        {
+            driver.Navigate().GoToUrl(baseURL + "/index.php");
+            driver.FindElement(By.LinkText("Sign in")).Click();
+            driver.FindElement(By.Id("email_create")).Click();
+            driver.FindElement(By.Id("email_create")).Clear();
+            driver.FindElement(By.Id("email_create")).SendKeys("abc");
+            driver.FindElement(By.Id("SubmitCreate")).Click();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            Assert.AreEqual("Invalid email address.", driver.FindElement(By.CssSelector("ol > li")).Text);
+        }
+
+        [Test]
+        public void TCCreate03()
+        {
+            driver.Navigate().GoToUrl(baseURL + "/index.php");
+            driver.FindElement(By.LinkText("Sign in")).Click();
+            driver.FindElement(By.Id("email_create")).Click();
+            driver.FindElement(By.Id("email_create")).Clear();
+            driver.FindElement(By.Id("email_create")).SendKeys("123@gmail.com");
+            driver.FindElement(By.Id("SubmitCreate")).Click();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            Assert.AreEqual("An account using this email address has already been registered. Please enter a valid password or request a new one.", driver.FindElement(By.CssSelector("ol > li")).Text);
+        }
+
+        [Test]
+        public void TCCreate04()
+        {
+            driver.Navigate().GoToUrl(baseURL + "/index.php");
+            driver.FindElement(By.LinkText("Sign in")).Click();
+            driver.FindElement(By.Id("email_create")).Click();
+            driver.FindElement(By.Id("email_create")).Clear();
+            driver.FindElement(By.Id("email_create")).SendKeys("a12a123@gmail.com");
+            driver.FindElement(By.Id("SubmitCreate")).Click();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            Assert.AreEqual("YOUR PERSONAL INFORMATION", driver.FindElement(By.CssSelector("#account-creation_form > div:nth-child(1) > h3")).Text);
+        }
         [TearDown]
         public void TeardownTest()
         {
