@@ -1,0 +1,3 @@
+C:\Users\dat\source\repos\ClassLibrary2\ClassLibrary2\obj\Debug\TH4_TranTienDat_1824801030161.csproj.CoreCompileInputs.cache
+C:\Users\dat\source\repos\ClassLibrary2\ClassLibrary2\obj\Debug\ClassLibrary2.dll
+C:\Users\dat\source\repos\ClassLibrary2\ClassLibrary2\obj\Debug\ClassLibrary2.pdb
